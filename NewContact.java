@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class NewContact {
-
 	private static final Logger LOG = LogManager.getLogger("BookAddress.class");
 	Integer[] phoneNumber = new Integer[10];
 	String[] Address = new String[10];
@@ -41,6 +40,29 @@ public class NewContact {
 		// }
 		LOG.info("Firstname" + Arrays.toString(Firstname));
 	}
+
+	public void delete(String name) {
+		for (int i = 0; i < 10; i++) {
+			boolean result = (Arrays.asList(Firstname).contains(name));
+			if (result == true) {
+				Firstname[i] = null;
+				Lastname[i] = null;
+				Address[i] = null;
+				phoneNumber[i] = null;
+
+				LOG.info("" + i);
+			}
+		} // boolean contains = Arrays.stream(Firstname).anyMatch("name"::equals);
+			// for(int i=0;i<10;i++)
+			// {
+			// }
+		LOG.info("Firstname" + Arrays.toString(Firstname));
+		LOG.info("Firstname" + Arrays.toString(Lastname));
+		LOG.info("Firstname" + Arrays.toString(Address));
+		LOG.info("Firstname" + Arrays.toString(phoneNumber));
+
+	}
+
 }
 
 class BookAddress extends NewContact {
@@ -95,6 +117,13 @@ class BookAddress extends NewContact {
 				String newname = next.nextLine();
 
 				contact.replace(name, newname);
+				break;
+			case 3:
+				Scanner cvb = new Scanner(System.in);
+				LOG.info("enter the name you want to rename");
+				name = cvb.nextLine();
+
+				contact.delete(name);
 				break;
 			}
 			LOG.info("Do you want to continue Then press 1 for yes and press 2 for No");
